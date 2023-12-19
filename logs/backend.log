@@ -46,3 +46,5 @@
 18.12.2023, 18:12:42 - ERROR - Cannot get bug | TypeError: visitedBugs.indexOf is not a function
 18.12.2023, 18:13:03 - ERROR - Cannot get bug | TypeError: visitedBugs.indexOf is not a function
 18.12.2023, 18:13:07 - ERROR - Cannot get bug | TypeError: visitedBugs.indexOf is not a function
+19.12.2023, 15:22:13 - ERROR - cannot remove bug | bug does not exist
+19.12.2023, 15:41:25 - ERROR - Cannot get bug | Bug does not exist!
