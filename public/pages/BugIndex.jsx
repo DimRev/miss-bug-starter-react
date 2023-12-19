@@ -3,20 +3,22 @@ import { utilService } from '../services/util.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { BugList } from '../cmps/BugList.jsx'
 import { BugFilter } from '../cmps/BugFilter.jsx'
+import { BugSorter } from '../cmps/BugSorter.jsx'
 
 const { useState, useEffect, useRef } = React
 
 export function BugIndex() {
   const [bugs, setBugs] = useState(null)
   const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
+  const [sortBy, setSortBy] = useState({type: 'title', dir: 1})
   const debounceOnSetFilter = useRef(utilService.debounce(onSetFilter, 500))
 
   useEffect(() => {
     loadBugs()
-  }, [filterBy])
+  }, [filterBy,sortBy])
 
   function loadBugs() {
-    bugService.query(filterBy).then(setBugs)
+    bugService.query(filterBy, sortBy).then(setBugs)
   }
 
   function onRemoveBug(bugId) {
@@ -104,6 +106,18 @@ export function BugIndex() {
     return value === undefined
   }
 
+  function onSetSortBy(type){
+    if(sortBy.type === type) return onSetSortDir()
+    setSortBy(prevSortBy => ({...prevSortBy, type}))
+  }
+
+  function onSetSortDir(){
+    setSortBy(prevSortBy => {
+      let newDir = prevSortBy.dir * -1
+      return {...prevSortBy, dir: newDir}
+    })
+  }
+
   const { title, severity, pageIdx } = filterBy
 
   return (
@@ -119,6 +133,11 @@ export function BugIndex() {
         <BugFilter
           filterBy={{ title, severity }}
           onSetFilter={debounceOnSetFilter.current}
+        />
+        <BugSorter
+          sortBy={sortBy}
+          onSetSortBy={onSetSortBy}
+          onSetSortDir={onSetSortDir}
         />
         <button onClick={onAddBug}>Add Bug ⛐</button>
         <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />

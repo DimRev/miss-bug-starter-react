@@ -9,16 +9,20 @@ app.use(express.static('public'))
 app.use(cookieParser())
 app.use(express.json())
 
-
 //Get Bugs
 app.get('/api/bug/', (req, res) => {
   const filterBy = {
     title: req.query.title,
-    severity: req.query.severity,
-    pageIdx: req.query.pageIdx
+    severity: +req.query.severity,
+    pageIdx: req.query.pageIdx,
   }
+  const sortBy = {
+    type: req.query.type,
+    dir: +req.query.dir,
+  }
+  console.log('server.GET /api/bug/ : ', filterBy, sortBy)
   bugService
-    .query(filterBy)
+    .query(filterBy, sortBy)
     .then((bugs) => {
       res.send(bugs)
     })
@@ -32,7 +36,7 @@ app.get('/api/bug/', (req, res) => {
 app.post('/api/bug/', (req, res) => {
   const { title, description, severity } = req.body
   const bugToSave = { title, description, severity }
-  console.log(bugToSave);
+  console.log(bugToSave)
   bugService
     .save(bugToSave)
     .then((bug) => res.send(bug))
@@ -72,6 +76,7 @@ app.get('/api/bug/:bugId', (req, res) => {
 //Remove Bug
 app.delete('/api/bug/:bugId', (req, res) => {
   const bugId = req.params.bugId
+  console.log(req.params)
   bugService
     .remove(bugId)
     .then((bug) => res.send(bug))
@@ -102,4 +107,3 @@ function handleCookies(req, res, bug) {
 
   res.send(bug)
 }
-
