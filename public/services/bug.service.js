@@ -12,8 +12,8 @@ export const bugService = {
   getDefaultFilter,
 }
 
-function query() {
-  return axios.get(BASE_URL).then((res) => res.data)
+function query(filterBy) {
+  return axios.get(BASE_URL, { params: filterBy }).then((res) => res.data)
 }
 
 function getById(bugId) {
@@ -25,7 +25,7 @@ function remove(bugId) {
 }
 
 function save(bug) {
-  if(bug._id){
+  if (bug._id) {
     return axios.put(BASE_URL, bug).then((res) => res.data)
   } else {
     return axios.post(BASE_URL, bug).then((res) => res.data)
@@ -35,4 +35,3 @@ function save(bug) {
 function getDefaultFilter() {
   return { title: '', severity: 0, pageIdx: 0 }
 }
-

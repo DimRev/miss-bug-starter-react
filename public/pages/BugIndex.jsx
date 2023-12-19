@@ -13,7 +13,7 @@ export function BugIndex() {
 
   useEffect(() => {
     loadBugs()
-  }, [])
+  }, [filterBy])
 
   function loadBugs() {
     bugService.query(filterBy).then(setBugs)
@@ -72,7 +72,6 @@ export function BugIndex() {
   }
 
   function onSetFilter(filterBy) {
-    console.log(filterBy);
     setFilterBy((prevFilter) => ({
       ...prevFilter,
       ...filterBy,
@@ -85,6 +84,9 @@ export function BugIndex() {
     setFilterBy((prevFilter) => {
       let newPageIdx = prevFilter.pageIdx + diff
       if (newPageIdx < 0) newPageIdx = 0
+
+      //TODO: Get max page idx value from server
+
       return { ...prevFilter, pageIdx: newPageIdx }
     })
   }

@@ -7,11 +7,30 @@ export const bugService = {
   remove,
   save,
 }
-
+const PAGE_SIZE = 3
 const bugs = utilService.readJsonFile('data/bugs.json')
 
-function query() {
-  return Promise.resolve(bugs)
+function query(filterBy) {
+  let bugsToReturn = bugs
+  if (filterBy.title) {
+    const regExp = new RegExp(filterBy.title, 'i')
+    bugsToReturn = bugsToReturn.filter((bug) => regExp.test(bug.title))
+  }
+  if (filterBy.severity) {
+    bugsToReturn = bugsToReturn.filter(
+      (bug) => bug.severity > filterBy.severity
+    )
+  }
+  if (filterBy.pageIdx !== undefined) {
+    const maxIdx = Math.ceil(bugsToReturn.length / PAGE_SIZE)
+    let startIdx = filterBy.pageIdx * PAGE_SIZE
+    if (startIdx > maxIdx) startIdx = maxIdx
+
+    //TODO: Send maxIdx value to BugIndex
+
+    bugsToReturn = bugsToReturn.slice(startIdx, startIdx + PAGE_SIZE)
+  }
+  return Promise.resolve(bugsToReturn)
 }
 
 function getById(bugId) {
@@ -42,7 +61,7 @@ function save(bug) {
 
   return _saveBugsToFile()
     .then(() => bug)
-    .catch(err => reject(err))
+    .catch((err) => reject(err))
 }
 
 function _saveBugsToFile() {
@@ -50,7 +69,7 @@ function _saveBugsToFile() {
     const data = JSON.stringify(bugs, null, 2)
     fs.writeFile('data/bugs.json', data, (err) => {
       if (err) {
-        console.error('Could not save bug changes',err)
+        console.error('Could not save bug changes', err)
         return reject(err)
       }
       resolve()
