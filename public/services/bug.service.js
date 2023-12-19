@@ -9,6 +9,7 @@ export const bugService = {
   getById,
   save,
   remove,
+  getDefaultFilter,
 }
 
 function query() {
@@ -29,5 +30,9 @@ function save(bug) {
   } else {
     return axios.post(BASE_URL, bug).then((res) => res.data)
   }
+}
+
+function getDefaultFilter() {
+  return { title: '', severity: 0, pageIdx: 0 }
 }
 
