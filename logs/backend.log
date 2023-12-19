@@ -1,0 +1,48 @@
+18.12.2023, 16:29:09 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 16:31:35 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 16:32:05 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 16:32:39 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 16:33:47 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 16:34:16 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 16:35:21 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 16:35:46 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 16:36:47 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 16:37:25 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 17:01:28 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 17:01:39 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 17:02:10 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 17:13:11 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 17:15:35 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 17:22:12 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 17:22:59 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 17:28:26 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 17:28:52 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 17:30:50 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 17:31:51 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 17:33:17 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 17:33:30 - ERROR - Cannot save bug | ReferenceError: send is not defined
+18.12.2023, 17:44:26 - ERROR - Cannot get bug | TypeError: req.cookies is not a function
+18.12.2023, 17:44:31 - ERROR - Cannot get bug | TypeError: req.cookies is not a function
+18.12.2023, 17:44:34 - ERROR - Cannot get bug | TypeError: req.cookies is not a function
+18.12.2023, 17:44:43 - ERROR - Cannot get bug | TypeError: req.cookies is not a function
+18.12.2023, 17:47:01 - ERROR - Cannot get bug | TypeError: Cannot read properties of undefined (reading 'visitedCount')
+18.12.2023, 17:47:21 - ERROR - Cannot get bug | TypeError: Cannot read properties of undefined (reading 'visitedCount')
+18.12.2023, 17:47:57 - ERROR - Cannot get bug | TypeError: Cannot read properties of undefined (reading 'visitedCount')
+18.12.2023, 17:48:03 - ERROR - Cannot get bug | TypeError: Cannot read properties of undefined (reading 'visitedCount')
+18.12.2023, 17:48:04 - ERROR - Cannot get bug | TypeError: Cannot read properties of undefined (reading 'visitedCount')
+18.12.2023, 17:49:30 - ERROR - Cannot get bug | TypeError: Cannot read properties of undefined (reading 'visitedCount')
+18.12.2023, 17:54:08 - ERROR - Cannot get bug | TypeError: Cannot read properties of undefined (reading 'visitedCount')
+18.12.2023, 17:54:23 - ERROR - Cannot get bug | TypeError: Cannot read properties of undefined (reading 'visitedCount')
+18.12.2023, 18:00:09 - ERROR - Cannot get bug | TypeError: visitedBugs.push is not a function
+18.12.2023, 18:00:13 - ERROR - Cannot get bug | TypeError: visitedBugs.push is not a function
+18.12.2023, 18:00:40 - ERROR - Cannot get bug | TypeError: visitedBugs.push is not a function
+18.12.2023, 18:02:34 - ERROR - Cannot get bug | ReferenceError: res is not defined
+18.12.2023, 18:02:51 - ERROR - Cannot get bug | ReferenceError: res is not defined
+18.12.2023, 18:10:09 - ERROR - Cannot get bug | SyntaxError: "undefined" is not valid JSON
+18.12.2023, 18:10:20 - ERROR - Cannot get bug | SyntaxError: "undefined" is not valid JSON
+18.12.2023, 18:10:53 - ERROR - Cannot get bug | SyntaxError: "undefined" is not valid JSON
+18.12.2023, 18:11:14 - ERROR - Cannot get bug | SyntaxError: "undefined" is not valid JSON
+18.12.2023, 18:11:59 - ERROR - Cannot get bug | ReferenceError: Cannot access 'visitedBugs' before initialization
+18.12.2023, 18:12:42 - ERROR - Cannot get bug | TypeError: visitedBugs.indexOf is not a function
+18.12.2023, 18:13:03 - ERROR - Cannot get bug | TypeError: visitedBugs.indexOf is not a function
+18.12.2023, 18:13:07 - ERROR - Cannot get bug | TypeError: visitedBugs.indexOf is not a function
