@@ -1,18 +1,22 @@
 import { bugService } from '../services/bug.service.js'
+import { utilService } from '../services/util.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { BugList } from '../cmps/BugList.jsx'
+import { BugFilter } from '../cmps/BugFilter.jsx'
 
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
 
 export function BugIndex() {
   const [bugs, setBugs] = useState(null)
+  const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
+  const debounceOnSetFilter = useRef(utilService.debounce(onSetFilter, 500))
 
   useEffect(() => {
     loadBugs()
   }, [])
 
   function loadBugs() {
-    bugService.query().then(setBugs)
+    bugService.query(filterBy).then(setBugs)
   }
 
   function onRemoveBug(bugId) {
@@ -67,10 +71,53 @@ export function BugIndex() {
       })
   }
 
+  function onSetFilter(filterBy) {
+    console.log(filterBy);
+    setFilterBy((prevFilter) => ({
+      ...prevFilter,
+      ...filterBy,
+      pageIdx: isUndefined(prevFilter.pageIdx) ? undefined : 0,
+    }))
+  }
+
+  function onChangePageIdx(diff) {
+    if (isUndefined(filterBy.pageIdx)) return
+    setFilterBy((prevFilter) => {
+      let newPageIdx = prevFilter.pageIdx + diff
+      if (newPageIdx < 0) newPageIdx = 0
+      return { ...prevFilter, pageIdx: newPageIdx }
+    })
+  }
+
+  function onTogglePagination() {
+    setFilterBy((prevFilter) => {
+      return {
+        ...prevFilter,
+        pageIdx: isUndefined(prevFilter.pageIdx) ? 0 : undefined,
+      }
+    })
+  }
+
+  function isUndefined(value) {
+    return value === undefined
+  }
+
+  const { title, severity, pageIdx } = filterBy
+
   return (
     <main>
       <h3>Bugs App</h3>
       <main>
+        <section className="pagination">
+          <button onClick={() => onChangePageIdx(1)}>+</button>
+          {pageIdx + 1 || 'No Pagination'}
+          <button onClick={() => onChangePageIdx(-1)}>-</button>
+          <button onClick={onTogglePagination}>Toggle pagination</button>
+        </section>
+        <BugFilter
+          filterBy={{ title, severity }}
+          onSetFilter={debounceOnSetFilter.current}
+        />
         <button onClick={onAddBug}>Add Bug ⛐</button>
         <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />
       </main>
