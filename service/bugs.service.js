@@ -18,13 +18,14 @@ function getById(bugId) {
   const bug = bugs.find((bug) => {
     return bug._id === bugId
   })
-  if (!bug) return Promise.reject('Bug dosent exist!')
+  if (!bug) return Promise.reject('Bug does not exist!')
 
   return Promise.resolve(bug)
 }
 
 function remove(bugId) {
   const bugIdx = bugs.findIndex((bug) => bug._id === bugId)
+  if (bugIdx === -1) return Promise.reject('bug does not exist')
   bugs.splice(bugIdx, 1)
   return _saveBugsToFile()
 }
@@ -39,7 +40,9 @@ function save(bug) {
     bugs.unshift(bug)
   }
 
-  return _saveBugsToFile().then(() => bug)
+  return _saveBugsToFile()
+    .then(() => bug)
+    .catch(err => reject(err))
 }
 
 function _saveBugsToFile() {
@@ -47,7 +50,7 @@ function _saveBugsToFile() {
     const data = JSON.stringify(bugs, null, 2)
     fs.writeFile('data/bugs.json', data, (err) => {
       if (err) {
-        console.log(err)
+        console.error('Could not save bug changes',err)
         return reject(err)
       }
       resolve()
