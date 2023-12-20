@@ -129,12 +129,6 @@ export function BugIndex() {
     <section className="bug-index-section">
       <h3>Bugs App</h3>
       <main>
-        <section className="pagination">
-          <button onClick={() => onChangePageIdx(1)}>+</button>
-          {pageIdx + 1 || 'No Pagination'}
-          <button onClick={() => onChangePageIdx(-1)}>-</button>
-          <button onClick={onTogglePagination}>Toggle pagination</button>
-        </section>
         <BugFilter
           filterBy={{ title, severity }}
           onSetFilter={debounceOnSetFilter.current}
@@ -147,6 +141,12 @@ export function BugIndex() {
         {user && <button onClick={onAddBug}>Add Bug ⛐</button>}
         <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />
       </main>
+      <section className="pagination">
+        <button onClick={() => onChangePageIdx(1)}>+</button>
+        {pageIdx + 1 || 'No Pagination'}
+        <button onClick={() => onChangePageIdx(-1)}>-</button>
+        <button onClick={onTogglePagination}>Toggle pagination</button>
+      </section>
     </section>
   )
 }
