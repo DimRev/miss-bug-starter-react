@@ -19,5 +19,11 @@
     "password": "kiki",
     "fullname": "Kiki Ki",
     "_id": "6iykr"
+  },
+  {
+    "_id": "iRKpT",
+    "username": "dima",
+    "password": "test1",
+    "fullname": "Dima Ja"
   }
 ]
