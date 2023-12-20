@@ -1,14 +1,16 @@
 [
   {
-    "title": "test2",
-    "description": "Another testBug",
-    "severity": 5,
+    "title": "My Bug",
+    "description": "This is my bug",
+    "severity": 6,
     "submittedBy": {
-      "_id": "iRKpT",
-      "fullname": "Dima Ja"
+      "_id": "f5tIx",
+      "username": "Dima",
+      "password": "test1",
+      "fullname": "Dima Rev"
     },
-    "_id": "qJp9C",
-    "createdAt": 1703081992497
+    "_id": "X5UJo",
+    "createdAt": 1703092431887
   },
   {
     "_id": "abc333",
@@ -57,5 +59,16 @@
       "need-CR",
       "dev-branch"
     ]
+  },
+  {
+    "title": "test2",
+    "description": "Another testBug",
+    "severity": 5,
+    "submittedBy": {
+      "_id": "iRKpT",
+      "fullname": "Dima Ja"
+    },
+    "_id": "qJp9C",
+    "createdAt": 1703081992497
   }
 ]
