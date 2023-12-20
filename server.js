@@ -90,7 +90,8 @@ app.delete('/api/bug/:bugId', (req, res) => {
 
 // AUTH API
 app.get('/api/user', (req, res) => {
-  userService.query()
+  userService
+    .query()
     .then((users) => {
       res.send(users)
     })
@@ -102,8 +103,9 @@ app.get('/api/user', (req, res) => {
 
 app.post('/api/auth/login', (req, res) => {
   const credentials = req.body
-  userService.checkLogin(credentials)
-    .then(user => {
+  userService
+    .checkLogin(credentials)
+    .then((user) => {
       if (user) {
         const loginToken = userService.getLoginToken(user)
         res.cookie('loginToken', loginToken)
@@ -112,12 +114,16 @@ app.post('/api/auth/login', (req, res) => {
         res.status(401).send('Invalid Credentials')
       }
     })
+    .catch((err) => {
+      res.status(401).send(err)
+    })
 })
 
 app.post('/api/auth/signup', (req, res) => {
   const credentials = req.body
-  userService.save(credentials)
-    .then(user => {
+  userService
+    .save(credentials)
+    .then((user) => {
       if (user) {
         const loginToken = userService.getLoginToken(user)
         res.cookie('loginToken', loginToken)
@@ -126,14 +132,15 @@ app.post('/api/auth/signup', (req, res) => {
         res.status(400).send('Cannot signup')
       }
     })
+    .catch((err) => {
+      res.status(400).send(err)
+    })
 })
 
 app.post('/api/auth/logout', (req, res) => {
   res.clearCookie('loginToken')
   res.send('logged-out!')
 })
-
-
 
 app.get('/**', (req, res) => {
   res.sendFile(path.resolve('public/index.html'))

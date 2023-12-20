@@ -30,14 +30,15 @@ function validateToken(token) {
 
 function checkLogin({ username, password }) {
   var user = users.find((user) => user.username === username)
-  if (user) {
+  if (user && user.password === password) {
     user = {
       _id: user._id,
       fullname: user.fullname,
       isAdmin: user.isAdmin,
     }
     return Promise.resolve(user)
-  } else return Promise.reject('Invalid login')
+  }
+  return Promise.reject('Invalid login / password')
 }
 
 function query() {
@@ -55,11 +56,18 @@ function remove(userId) {
   return _saveUsersToFile()
 }
 
-function save(user) {
-  user._id = utilService.makeId()
-  // TODO: severe security issue- attacker can post admins
-  users.push(user)
-  return _saveUsersToFile().then(() => user)
+function save(userToSave) {
+  //Case: No username/password/fullname
+  if(!userToSave.username || !userToSave.password || !userToSave.fullname) return Promise.reject('Unable to create a user')
+  //Case: Username taken
+  if(users.some((user) => user.username === userToSave.username)) return Promise.reject('Username unavailable')
+
+  const { username, password, fullname } = userToSave
+  const _id = utilService.makeId()
+  const newUser = { _id, username, password, fullname }
+  users.push(newUser)
+
+  return _saveUsersToFile().then(() => newUser)
 }
 
 function _saveUsersToFile() {
