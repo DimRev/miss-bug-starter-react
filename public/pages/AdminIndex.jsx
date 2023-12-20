@@ -16,16 +16,46 @@ export function AdminIndex() {
   }
 
   function onRemoveUser(userId) {
-
+    userService
+      .remove(userId)
+      .then(() => {
+        console.log('Deleted Successfully!')
+        const usersToUpdate = users.filter((user) => user._id !== userId)
+        setUsers(usersToUpdate)
+        showSuccessMsg('user removed')
+      })
+      .catch((err) => {
+        console.log('Error from onRemoveUser ->', err)
+        showErrorMsg('Cannot remove user')
+      })
   }
 
   function onEditUser(user) {
-
+    const isAdmin = confirm('Add admin permission to user')
+    const userToSave = { ...user, isAdmin }
+    userService
+      .save(userToSave)
+      .then((savedUser) => {
+        console.log('Updated Bug:', savedUser)
+        const UsersToUpdate = users.map((currUser) =>
+          currUser._id === savedUser._id ? savedUser : currUser
+        )
+        setBugs(UsersToUpdate)
+        showSuccessMsg('Bug updated')
+      })
+      .catch((err) => {
+        console.log('Error from onEditUser ->', err)
+        showErrorMsg('Cannot update user')
+      })
   }
 
   return (
     <section className="admin-index-section">
-      <UserList users={users} onRemoveUser={onRemoveUser} onEditUser={onEditUser} />
+      <UserList
+        users={users}
+        onRemoveUser={onRemoveUser}
+        onEditUser={onEditUser}
+      />
     </section>
   )
 }

@@ -4,6 +4,8 @@ const STORAGE_KEY_LOGGEDIN_USER = 'loggedInUser'
 
 export const userService = {
     query,
+    save,
+    remove,
     login,
     signup,
     logout,
@@ -19,6 +21,15 @@ function query(){
     return axios
     .get('/api/user')
     .then((res) => res.data)
+}
+function save(user){
+    console.log(user);
+    // return axios.put(BASE_URL, user).then((res) => res.data)
+}
+
+function remove(userId){
+    console.log(userId);
+    // return axios.delete(BASE_URL + userId).then(() => bugId)
 }
 
 function login({ username, password }) {
