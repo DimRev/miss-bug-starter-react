@@ -121,7 +121,7 @@ export function BugIndex() {
   const { title, severity, pageIdx } = filterBy
 
   return (
-    <main>
+    <section className='bug-index-section'>
       <h3>Bugs App</h3>
       <main>
         <section className="pagination">
@@ -142,6 +142,6 @@ export function BugIndex() {
         <button onClick={onAddBug}>Add Bug ⛐</button>
         <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />
       </main>
-    </main>
+    </section>
   )
 }
