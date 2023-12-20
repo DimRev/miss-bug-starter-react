@@ -1,6 +1,7 @@
 const { useEffect, useState } = React
 
 import { userService } from '../services/user.service.js'
+import { showErrorMsg } from '../services/event-bus.service.js'
 
 import { UserList } from '../cmps/UserList.jsx'
 
@@ -36,12 +37,12 @@ export function AdminIndex() {
     userService
       .save(userToSave)
       .then((savedUser) => {
-        console.log('Updated Bug:', savedUser)
+        console.log('Updated User:', savedUser)
         const UsersToUpdate = users.map((currUser) =>
           currUser._id === savedUser._id ? savedUser : currUser
         )
-        setBugs(UsersToUpdate)
-        showSuccessMsg('Bug updated')
+        setUsers(UsersToUpdate)
+        showSuccessMsg('User updated')
       })
       .catch((err) => {
         console.log('Error from onEditUser ->', err)

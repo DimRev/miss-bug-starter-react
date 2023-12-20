@@ -4,7 +4,7 @@ import { utilService } from './utils.service.js'
 
 const cryptr = new Cryptr(process.env.SECRET1 || 'secret-puk-1234')
 
-const users = utilService.readJsonFile('data/user.json')
+let users = utilService.readJsonFile('data/user.json')
 
 export const userService = {
   query,
@@ -57,15 +57,26 @@ function remove(userId) {
 }
 
 function save(userToSave) {
-  //Case: No username/password/fullname
-  if(!userToSave.username || !userToSave.password || !userToSave.fullname) return Promise.reject('Unable to create a user')
-  //Case: Username taken
-  if(users.some((user) => user.username === userToSave.username)) return Promise.reject('Username unavailable')
+  let newUser
+  if (userToSave._id) {
+    const userIdx = users.findIndex(
+      (currUser) => currUser._id === userToSave._id
+    )
+    users[userIdx] = userToSave
+    newUser = userToSave
+  } else {
+    //Case: No username/password/fullname
+    if (!userToSave.username || !userToSave.password || !userToSave.fullname)
+      return Promise.reject('Unable to create a user')
+    //Case: Username taken
+    if (users.some((user) => user.username === userToSave.username))
+      return Promise.reject('Username unavailable')
 
-  const { username, password, fullname } = userToSave
-  const _id = utilService.makeId()
-  const newUser = { _id, username, password, fullname }
-  users.push(newUser)
+    const { username, password, fullname } = userToSave
+    const _id = utilService.makeId()
+    newUser = { _id, username, password, fullname }
+    users.push(newUser)
+  }
 
   return _saveUsersToFile().then(() => newUser)
 }

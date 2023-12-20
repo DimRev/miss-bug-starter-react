@@ -18,7 +18,7 @@ app.get('/api/bug/', (req, res) => {
     title: req.query.title,
     severity: +req.query.severity,
     pageIdx: req.query.pageIdx,
-    submittedBy_id: req.query.submittedBy_id
+    submittedBy_id: req.query.submittedBy_id,
   }
   const sortBy = {
     type: req.query.type,
@@ -99,6 +99,30 @@ app.get('/api/user', (req, res) => {
     .catch((err) => {
       console.log('Cannot load users', err)
       res.status(400).send('Cannot load users')
+    })
+})
+
+app.put('/api/user', (req, res) => {
+  console.log(req.body)
+  const { _id,username,fullname,password,isAdmin } = req.body
+  const userToSave = { _id,username,fullname,password,isAdmin }
+  userService
+    .save(userToSave)
+    .then((user) => res.send(user))
+    .catch((err) => {
+      loggerService.error('Cannot save user', err)
+      res.status(404).send('Cannot save user')
+    })
+})
+
+app.delete('/api/user/:userId', (req, res) => {
+  const userId = req.params.userId
+  userService
+    .remove(userId)
+    .then((user) => res.send(user))
+    .catch((err) => {
+      loggerService.error('cannot remove user', err)
+      res.status(404).send('Cannot remove user')
     })
 })
 
