@@ -38,6 +38,10 @@ function query(filterBy, sortBy) {
       bugsToReturn.sort(
         (bugA, bugB) => (bugA.severity - bugB.severity) * sortBy.dir
       )
+    case 'date':
+      bugsToReturn.sort(
+        (bugA, bugB) => (bugA.createdAt - bugB.createdAt) * sortBy.dir
+      )
   }
 
   //* Pagination
@@ -71,12 +75,12 @@ function remove(bugId) {
 }
 
 function save(bug) {
-  bug.createdAt = Date.now()
   if (bug._id) {
     const bugIdx = bugs.findIndex((currBug) => currBug._id === bug._id)
     bugs[bugIdx] = bug
   } else {
     bug._id = utilService.makeId()
+    bug.createdAt = Date.now()
     bugs.unshift(bug)
   }
 
