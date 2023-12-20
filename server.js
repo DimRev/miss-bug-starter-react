@@ -36,8 +36,8 @@ app.get('/api/bug/', (req, res) => {
 
 //Add Bug
 app.post('/api/bug/', (req, res) => {
-  const { title, description, severity } = req.body
-  const bugToSave = { title, description, severity }
+  const { title, description, severity, submittedBy } = req.body
+  const bugToSave = { title, description, severity, submittedBy }
   console.log(bugToSave)
   bugService
     .save(bugToSave)
@@ -50,8 +50,8 @@ app.post('/api/bug/', (req, res) => {
 
 //Edit Bug
 app.put('/api/bug/', (req, res) => {
-  const { title, description, severity, _id } = req.body
-  const bugToSave = { title, description, severity, _id }
+  const { title, description, severity, _id, submittedBy } = req.body
+  const bugToSave = { _id, title, description, severity, submittedBy }
   bugService
     .save(bugToSave)
     .then((bug) => res.send(bug))

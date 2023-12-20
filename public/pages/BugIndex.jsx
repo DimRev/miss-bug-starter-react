@@ -1,6 +1,8 @@
 import { bugService } from '../services/bug.service.js'
+import { userService } from '../services/user.service.js'
 import { utilService } from '../services/util.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+
 import { BugList } from '../cmps/BugList.jsx'
 import { BugFilter } from '../cmps/BugFilter.jsx'
 import { BugSorter } from '../cmps/BugSorter.jsx'
@@ -10,12 +12,12 @@ const { useState, useEffect, useRef } = React
 export function BugIndex() {
   const [bugs, setBugs] = useState(null)
   const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
-  const [sortBy, setSortBy] = useState({type: 'title', dir: 1})
+  const [sortBy, setSortBy] = useState({ type: 'title', dir: 1 })
   const debounceOnSetFilter = useRef(utilService.debounce(onSetFilter, 500))
 
   useEffect(() => {
     loadBugs()
-  }, [filterBy,sortBy])
+  }, [filterBy, sortBy])
 
   function loadBugs() {
     bugService.query(filterBy, sortBy).then(setBugs)
@@ -39,7 +41,9 @@ export function BugIndex() {
   function onAddBug() {
     const bug = {
       title: prompt('Bug title?'),
+      description: prompt('Bug description?'),
       severity: +prompt('Bug severity?'),
+      submittedBy: userService.getLoggedinUser(),
     }
     bugService
       .save(bug)
@@ -106,22 +110,23 @@ export function BugIndex() {
     return value === undefined
   }
 
-  function onSetSortBy(type){
-    if(sortBy.type === type) return onSetSortDir()
-    setSortBy(prevSortBy => ({...prevSortBy, type}))
+  function onSetSortBy(type) {
+    if (sortBy.type === type) return onSetSortDir()
+    setSortBy((prevSortBy) => ({ ...prevSortBy, type }))
   }
 
-  function onSetSortDir(){
-    setSortBy(prevSortBy => {
+  function onSetSortDir() {
+    setSortBy((prevSortBy) => {
       let newDir = prevSortBy.dir * -1
-      return {...prevSortBy, dir: newDir}
+      return { ...prevSortBy, dir: newDir }
     })
   }
 
   const { title, severity, pageIdx } = filterBy
+  const user = userService.getLoggedinUser()
 
   return (
-    <section className='bug-index-section'>
+    <section className="bug-index-section">
       <h3>Bugs App</h3>
       <main>
         <section className="pagination">
@@ -139,7 +144,7 @@ export function BugIndex() {
           onSetSortBy={onSetSortBy}
           onSetSortDir={onSetSortDir}
         />
-        <button onClick={onAddBug}>Add Bug ⛐</button>
+        {user && <button onClick={onAddBug}>Add Bug ⛐</button>}
         <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />
       </main>
     </section>
