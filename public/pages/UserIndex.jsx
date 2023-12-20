@@ -24,7 +24,6 @@ export function UserIndex() {
   }, [])
 
   useEffect(() => {
-    console.log(filterBy)
     loadBugs()
   }, [filterBy, sortBy])
 
@@ -137,8 +136,9 @@ export function UserIndex() {
 
   return (
     <section className="user-index-section">
-      <h3>Your Bugs</h3>
+      <h1>Hello {user.fullname}! Welcome to your user section</h1>
       <main>
+      <h1>Your Bugs</h1>
         <BugFilter
           filterBy={{ title, severity }}
           onSetFilter={debounceOnSetFilter.current}

@@ -1,6 +1,7 @@
 export function BugSorter({ sortBy, onSetSortBy, onSetSortDir }) {
   return (
     <section className="bug-sorter main-layout full">
+      <h4>Sorter</h4>
       <button
         className={sortBy === 'title' ? 'active' : ''}
         onClick={() => onSetSortBy('title')}>

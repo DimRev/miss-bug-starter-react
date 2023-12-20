@@ -14,6 +14,7 @@ export function BugIndex() {
   const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
   const [sortBy, setSortBy] = useState({ type: 'title', dir: 1 })
   const debounceOnSetFilter = useRef(utilService.debounce(onSetFilter, 500))
+  const user = userService.getLoggedinUser()
 
   useEffect(() => {
     loadBugs()
@@ -122,7 +123,6 @@ export function BugIndex() {
     })
   }
 
-  const user = userService.getLoggedinUser()
   const { title, severity, pageIdx } = filterBy
 
   return (

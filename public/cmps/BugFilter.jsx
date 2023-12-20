@@ -36,7 +36,7 @@ export function BugFilter({ filterBy, onSetFilter }) {
   const { title, severity } = filterByToEdit
   return (
     <section className="bug-filter main-layout full">
-      <h2>Filter Our Bugs</h2>
+      <h4>Filter</h4>
       <form onSubmit={onSetFilterBy}>
         <label htmlFor="txt">Title: </label>
         <input
