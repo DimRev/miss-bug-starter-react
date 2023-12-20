@@ -1,6 +1,6 @@
 export function Home() {
   return (
-    <section className="home-section">
+    <section className="home-main-section main-section">
       <h2>Home is Home</h2>
       <img src="assets/img/logo.png" />
     </section>

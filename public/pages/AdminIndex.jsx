@@ -51,7 +51,7 @@ export function AdminIndex() {
   }
 
   return (
-    <section className="admin-index-section">
+    <section className="admin-index-section main-section">
       <UserList
         users={users}
         onRemoveUser={onRemoveUser}

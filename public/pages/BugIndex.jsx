@@ -126,7 +126,7 @@ export function BugIndex() {
   const { title, severity, pageIdx } = filterBy
 
   return (
-    <section className="bug-index-section">
+    <section className="bug-index-section main-section">
       <h3>Bugs App</h3>
       <main>
         <BugFilter

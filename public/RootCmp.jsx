@@ -13,7 +13,7 @@ import { AdminIndex } from './pages/AdminIndex.jsx'
 export function App() {
   return (
     <Router>
-      <div>
+      <section className='app-section'>
         <AppHeader />
         <main>
           <Routes>
@@ -26,7 +26,7 @@ export function App() {
           </Routes>
         </main>
         <AppFooter />
-      </div>
+      </section>
     </Router>
   )
 }

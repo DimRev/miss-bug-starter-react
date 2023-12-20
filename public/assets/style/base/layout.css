@@ -1,0 +1,15 @@
+.app-section {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Ensure full viewport height */
+}
+
+.main-section {
+  display: grid;
+  grid-template-columns: 1fr 900px 1fr;
+}
+
+.main-section > * {
+  grid-column: 2;
+}
+

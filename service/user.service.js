@@ -2,7 +2,7 @@ import fs from 'fs'
 import Cryptr from 'cryptr'
 import { utilService } from './utils.service.js'
 
-const cryptr = new Cryptr(process.env.SECRET1 || 'secret-puk-1234')
+const cryptr = new Cryptr(process.env.DB_KEY || 'secret-puk-1234')
 
 let users = utilService.readJsonFile('data/user.json')
 

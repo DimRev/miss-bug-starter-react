@@ -32,26 +32,28 @@ export function AppHeader() {
   }
 
   return (
-    <header>
-      <UserMsg />
-      {user ? (
-        <section>
-          <Link to={`/user/${user._id}`}>Hello {user.fullname}</Link>
-          <button onClick={onLogout}>Logout</button>
-        </section>
-      ) : (
-        <section>
-          <LoginSignup onSetUser={onSetUser} />
-        </section>
-      )}
-      <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/bug">Bugs</NavLink>
-        {user && <NavLink to="/user">User</NavLink>}
-        {user && user.isAdmin && <NavLink to="/admin">Admin</NavLink>}
-        <NavLink to="/about">About</NavLink>
-      </nav>
-      <h1>Bugs are Forever</h1>
+    <header className="main-header main-section">
+      <section className="header-inner-section">
+        <UserMsg />
+        <h1>Bugs are Forever</h1>
+        {user ? (
+          <section className="login-section">
+            <Link to={`/user/${user._id}`}>Hello {user.fullname}</Link>
+            <button onClick={onLogout}>Logout</button>
+          </section>
+        ) : (
+          <section className="login-section">
+            <LoginSignup onSetUser={onSetUser} />
+          </section>
+        )}
+        <nav>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/bug">Bugs</NavLink>
+          {user && <NavLink to="/user">User</NavLink>}
+          {user && user.isAdmin && <NavLink to="/admin">Admin</NavLink>}
+          <NavLink to="/about">About</NavLink>
+        </nav>
+      </section>
     </header>
   )
 }

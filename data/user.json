@@ -7,9 +7,9 @@
     "isAdmin": true
   },
   {
-    "_id": "f5tIx",
-    "username": "Dima",
-    "password": "test1",
-    "fullname": "Dima Rev"
+    "_id": "EDLlV",
+    "username": "admin",
+    "password": "admin",
+    "fullname": "admin"
   }
 ]

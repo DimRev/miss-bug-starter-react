@@ -135,7 +135,7 @@ export function UserIndex() {
 
 
   return (
-    <section className="user-index-section">
+    <section className="user-index-section main-section">
       <h1>Hello {user.fullname}! Welcome to your user section</h1>
       <main>
       <h1>Your Bugs</h1>
