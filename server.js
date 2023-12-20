@@ -20,7 +20,6 @@ app.get('/api/bug/', (req, res) => {
     type: req.query.type,
     dir: +req.query.dir,
   }
-  console.log('server.GET /api/bug/ : ', filterBy, sortBy)
   bugService
     .query(filterBy, sortBy)
     .then((bugs) => {
