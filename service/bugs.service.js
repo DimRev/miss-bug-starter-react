@@ -25,6 +25,9 @@ function query(filterBy, sortBy) {
       (bug) => bug.severity > filterBy.severity
     )
   }
+  if (filterBy.submittedBy_id) {
+    bugsToReturn = bugsToReturn.filter(bug => bug.submittedBy._id === filterBy.submittedBy_id)
+  }
 
   //* Sort
   switch (sortBy.type) {

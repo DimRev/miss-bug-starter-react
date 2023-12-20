@@ -18,6 +18,7 @@ app.get('/api/bug/', (req, res) => {
     title: req.query.title,
     severity: +req.query.severity,
     pageIdx: req.query.pageIdx,
+    submittedBy_id: req.query.submittedBy_id
   }
   const sortBy = {
     type: req.query.type,

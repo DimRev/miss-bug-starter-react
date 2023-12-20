@@ -15,7 +15,16 @@ export function UserIndex() {
   const [sortBy, setSortBy] = useState({ type: 'title', dir: 1 })
   const debounceOnSetFilter = useRef(utilService.debounce(onSetFilter, 500))
 
+  const user = userService.getLoggedinUser()
   useEffect(() => {
+    setFilterBy((prevFilterBy) => ({
+      ...prevFilterBy,
+      submittedBy_id: user._id,
+    }))
+  }, [])
+
+  useEffect(() => {
+    console.log(filterBy)
     loadBugs()
   }, [filterBy, sortBy])
 
@@ -81,6 +90,7 @@ export function UserIndex() {
     setFilterBy((prevFilter) => ({
       ...prevFilter,
       ...filterBy,
+      submittedBy_id: user._id,
       pageIdx: isUndefined(prevFilter.pageIdx) ? undefined : 0,
     }))
   }
@@ -123,7 +133,7 @@ export function UserIndex() {
   }
 
   const { title, severity, pageIdx } = filterBy
-  const user = userService.getLoggedinUser()
+
 
   return (
     <section className="user-index-section">

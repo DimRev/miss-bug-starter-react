@@ -122,8 +122,8 @@ export function BugIndex() {
     })
   }
 
-  const { title, severity, pageIdx } = filterBy
   const user = userService.getLoggedinUser()
+  const { title, severity, pageIdx } = filterBy
 
   return (
     <section className="bug-index-section">
