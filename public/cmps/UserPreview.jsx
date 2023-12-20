@@ -10,6 +10,9 @@ export function UserPreview({ user }) {
       <p>
         Id: <span>{user._id}</span>
       </p>
+      <p>
+        Authorization: <span>{user.isAdmin ? 'Admin' : 'User'}</span>
+      </p>
     </article>
   )
 }
