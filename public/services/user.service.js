@@ -3,6 +3,7 @@
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedInUser'
 
 export const userService = {
+    query,
     login,
     signup,
     logout,
@@ -12,6 +13,12 @@ export const userService = {
 
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+}
+
+function query(){
+    return axios
+    .get('/api/user')
+    .then((res) => res.data)
 }
 
 function login({ username, password }) {

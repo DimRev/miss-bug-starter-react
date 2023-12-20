@@ -18,7 +18,9 @@ function query(filterBy, sortBy) {
   //* Filter
   if (filterBy.title) {
     const regExp = new RegExp(filterBy.title, 'i')
-    bugsToReturn = bugsToReturn.filter((bug) => regExp.test(bug.title))
+    bugsToReturn = bugsToReturn.filter((bug) => {
+      return regExp.test(bug.title) || regExp.test(bug.description)
+    })
   }
   if (filterBy.severity) {
     bugsToReturn = bugsToReturn.filter(
@@ -26,16 +28,16 @@ function query(filterBy, sortBy) {
     )
   }
   if (filterBy.submittedBy_id) {
-    bugsToReturn = bugsToReturn.filter(bug => bug.submittedBy._id === filterBy.submittedBy_id)
+    bugsToReturn = bugsToReturn.filter(
+      (bug) => bug.submittedBy._id === filterBy.submittedBy_id
+    )
   }
 
   //* Sort
   switch (sortBy.type) {
     case 'title':
       bugsToReturn.sort(
-        (bugA, bugB) =>
-          bugA.title.localeCompare(bugB.title) *
-          sortBy.dir
+        (bugA, bugB) => bugA.title.localeCompare(bugB.title) * sortBy.dir
       )
     case 'severity':
       bugsToReturn.sort(
