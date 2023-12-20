@@ -45,8 +45,11 @@ export function AppHeader() {
         </section>
       )}
       <nav>
-        <NavLink to="/">Home</NavLink> |<NavLink to="/bug">Bugs</NavLink> |
-        <NavLink to="/user">User</NavLink> | <NavLink to="/about">About</NavLink>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/bug">Bugs</NavLink>
+        {user && <NavLink to="/user">User</NavLink>}
+        {user.isAdmin && <NavLink to="/admin">Admin</NavLink>}
+        <NavLink to="/about">About</NavLink>
       </nav>
       <h1>Bugs are Forever</h1>
     </header>
