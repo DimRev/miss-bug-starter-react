@@ -1,16 +1,15 @@
 [
   {
-    "title": "My Bug",
-    "description": "This is my bug",
-    "severity": 6,
+    "title": "Admin is admin",
+    "description": "Admin admin?",
+    "severity": 3,
     "submittedBy": {
-      "_id": "f5tIx",
-      "username": "Dima",
-      "password": "test1",
-      "fullname": "Dima Rev"
+      "_id": "EDLlV",
+      "fullname": "admin",
+      "isAdmin": true
     },
-    "_id": "X5UJo",
-    "createdAt": 1703092431887
+    "_id": "sQMdo",
+    "createdAt": 1703136216496
   },
   {
     "_id": "abc333",
@@ -70,5 +69,18 @@
     },
     "_id": "qJp9C",
     "createdAt": 1703081992497
+  },
+  {
+    "title": "My Bug",
+    "description": "This is my bug",
+    "severity": 6,
+    "submittedBy": {
+      "_id": "f5tIx",
+      "username": "Dima",
+      "password": "test1",
+      "fullname": "Dima Rev"
+    },
+    "_id": "X5UJo",
+    "createdAt": 1703092431887
   }
 ]

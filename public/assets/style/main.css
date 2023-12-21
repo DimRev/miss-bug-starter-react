@@ -2,6 +2,9 @@
 @import './base/base.css';
 @import './base/layout.css';
 
+/* Page */
+@import './page/BugIndex.css';
+
 /* Cmps */
 @import './cmps/AppHeader.css';
 @import './cmps/LoginSignup.css';

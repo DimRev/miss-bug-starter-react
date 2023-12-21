@@ -1,0 +1,25 @@
+.bug-index-section .pagination{
+  display: flex;
+  gap: .7em;
+  align-items: center;
+  background-color: lightgray;
+  width: fit-content;
+  padding: .6em;
+  border-radius: 7px;
+  margin-block-end: .3em;
+}
+.bug-index-section .pagination button{
+  padding: .7em 1.2em;
+  border-radius: 7px;
+  transition: background-color .3s ease;
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+}
+
+.bug-index-section .pagination button:hover{
+  background-color: darkgray;
+}
